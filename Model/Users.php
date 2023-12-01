@@ -1,20 +1,19 @@
 <?php 
 abstract class Users {
-    public function __construct(
-        protected int $id,
-        protected string $firstName, 
-        protected string $lastName, 
-        protected string $phoneNb,
-        protected string $email, 
-        protected string $passWord, 
-        protected string $birthDate, 
-        protected string $image,
-        protected string $street, 
-        protected string $PostalCode,
-        protected string $City
-        ) {
-
-        }
+                protected int $id = 0;
+        public function __construct(
+                protected string $firstName, 
+                protected string $lastName, 
+                protected string $phoneNb,
+                protected string $email, 
+                protected string $passWord, 
+                protected string $birthDate, 
+                protected string $street, 
+                protected string $PostalCode,
+                protected string $City, protected ?string $image = NULL,int $id = 0
+                ) {
+                        $this->id = $id;
+                }
     
 
 

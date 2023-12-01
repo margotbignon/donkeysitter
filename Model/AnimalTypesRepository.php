@@ -1,6 +1,6 @@
 <?php
 
-class ServicesRepository
+class AnimalTypesRepository
 {
     private $pdo;
     public function __construct()
@@ -10,7 +10,7 @@ class ServicesRepository
 
     public function getRows(){
         //2 query : all cars
-       $query = "SELECT * FROM animalType";
+       $query = "SELECT * FROM animalTypes";
        $statement = $this->pdo->query($query);
        $animalTypes = $statement->fetchAll(PDO::FETCH_ASSOC);
        return $animalTypes;
