@@ -107,6 +107,12 @@ h1,h2,h3,h4,h5,h6 {
 
 /* navbar */
 
+.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+}
+
 .navbar-brand img {
     
 }
@@ -119,7 +125,7 @@ h1,h2,h3,h4,h5,h6 {
 
 /* section hero */
 section.hero {
-    margin: 5rem 0;
+    margin: rem 0;
 }
 
 .text-label,
