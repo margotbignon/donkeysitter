@@ -3,7 +3,7 @@ require_once 'Model/PetSitters.php';
 require_once "Model/PetSittersRepository.php";
 require_once "Model/Database.php";
 require_once 'Model/ServicesRepository.php';
-
+include 'Templates/nav.php';
 
 $id = 3;
 
@@ -11,13 +11,10 @@ $connectPetSitter = new PetsittersRepository();
 $petsitter = $connectPetSitter-> getRow($id);
 
 
-
 // exit();
 
 $title = 'Profil du Pet Sitter';
 ?>
-
-
 
 <!DOCTYPE html>
   <html lang="en">
@@ -33,7 +30,6 @@ $title = 'Profil du Pet Sitter';
     <title><?=$title?></title>
 </head>
 <body>
-<!-- inclure le header avec la nav-bar -->
 
 
 <div class="profil-container">

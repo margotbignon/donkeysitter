@@ -6,31 +6,6 @@ class PetsittersRepository extends UsersRepository {
     public function __construct() {
         $this->pdo=Database::getPdo();
     }
-// 
-//     public function getRow(int $id) : array {
-//         $query = "SELECT * FROM petSitters WHERE idpetSitter= :myId"; 
-//         $query=<<<SQL
-//         SELECT
-//         FROM 
-//             petSitters ps
-//         LEFT JOIN
-//             petSitterServices pss
-//         ON  
-//             ps.idpetSitter = pss.idpetSitter
-//         LEFT JOIN
-//             services s 
-//         ON
-//             pss.service_id = s.idservice
-//         LEFT JOIN
-//             residenceTypes rt
-//         ON 
-//             ps.residenceType_id = rt.idresidenceType
-//         GROUP BY 
-//             ps.idpetSitter
-//         HAVING
-//             ps.idpetSitter = :myId; 
-              
-// SQL;
 
 //-----------------REQUÊTE MODIFIÉE ------------------//
         public function getRow($id)  {
@@ -58,6 +33,40 @@ class PetsittersRepository extends UsersRepository {
         return $petSitter;
     }
 
+
+
+    public function getRowsByPost($date, $city, $service) {
+        $query = "SELECT 
+            ps.*, pss.*, s.*, rt.*, a.*, av.*
+        FROM 
+            petSitters ps
+        LEFT JOIN 
+            petSitterServices pss ON ps.idpetSitter = pss.petSitter_id
+        LEFT JOIN 
+            services s ON pss.service_id = s.idservice
+        LEFT JOIN 
+            residenceTypes rt ON ps.residenceType_id = rt.idresidenceType
+        LEFT JOIN 
+            animalTypes a ON ps.animalType_id = a.idanimalType
+        LEFT JOIN 
+            availabilities av ON ps.idpetSitter = av.petSitter_id
+        WHERE 
+            av.date = :date
+            AND ps.sitterCity = :city
+            AND s.serviceName = :service";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':date', $date, \PDO::PARAM_STR);
+        $statement->bindValue(':city', $city, \PDO::PARAM_STR);
+        $statement->bindValue(':service', $service, \PDO::PARAM_STR);
+        $statement->execute();
+
+        $petsitters = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $petsitters;
+    }
+
+
+    
     public function insertRow(string $firstName, string $lastName, string $phoneNb, string $email, string $passWord, string $birthDate, string $image, string $street, string $postalCode, string $city, string $description, string $petterSince, string $residenceTypeId) {
         $query=<<<SQL
         INSERT INTO 
