@@ -10,28 +10,7 @@ $id = 3;
 $connectPetSitter = new PetsittersRepository();
 $petsitter = $connectPetSitter-> getRow($id);
 
-// $serviceId = $petsitter['service_id'];
-// $connectService = new ServicesRepository();
-// // $service = $connectService->getRow($serviceId);
-// // var_dump($service);
 
-// var_dump($petsitter);
-
-// $petSitter = $query = "SELECT 
-//         ps.*, pss.*, s.*, rt.*
-//     FROM 
-//         petSitters ps
-//     LEFT JOIN 
-//         petSitterServices pss ON ps.idpetSitter = pss.petSitter_id
-//     LEFT JOIN 
-//         services s ON pss.service_id = s.idservice
-//     LEFT JOIN 
-//         residenceTypes rt ON ps.residenceType_id = rt.idresidenceType
-//     WHERE 
-//         ps.idpetSitter = 3";
-///--------------------------------------------------------
-
-// var_dump($petsitter);
 
 // exit();
 
