@@ -1,5 +1,5 @@
 <!-- navbar section -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg sticky bg-warning">
   <div class="container-lg mt-4">
     <a class="navbar-brand" href="index.php" alt="brand">
       <img src="../Assets/logo.svg" Sitters>
