@@ -91,7 +91,7 @@ $services = $servicesRepository->getRows();
                     </div>
                 <?php endforeach ?>
             </fieldset>       
-
+                    
             <input type="submit" class="btn btn-warning bg-danger mt-3 text-white w-25" value="Je m'inscris !">
 
 
