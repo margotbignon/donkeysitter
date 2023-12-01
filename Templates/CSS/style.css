@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.body-image {
+    background-image: url(../../Assets/BG_Visual.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right bottom;
+    background-size: 60%;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 700;
+    color: #1B1B1B;
+}
+
+:root {
+    /* color styles */
+    --primary: #F63D3D;
+    --primary-light: #D93A3A;
+    --black: #1B1B1B;
+    --gray-1: #798092;
+    --gray-2: #E6E6ED;
+    --gray-3: #c9c9ce;  
+    --white: #FFFFFF;
+
+    /* font sizes */
+    --header-1: 64px;
+    --header-2: 48px;
+    --header-3: 42px;
+    --header-4: 32px;
+
+    --text-medium: 18px;
+    --text-regular: 16px;
+    --text-light: 13px;
+
+    /* font weight */
+
+    --font-weight-bold: 700;
+    --font-weight-semibold: 600;
+    --font-weight-medium: 500;
+    --font-weight-regular: 400;
+
+}
+
+/* button primary */
+
+.btn {
+    padding: 15px 100px;
+    font-weight: 600;
+    border-radius: 8px;
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-semibold);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+}
+
+.btn-primary:focus {
+    background-color: var(--primary-light);
+
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-light);
+
+}
+
+/* button secondary */
+
+.btn-secondary {
+    background-color: var(--gray-2);
+    color: var(--gray-1);
+}
+
+.btn-secondary:focus {
+    background-color: var(--white);
+    color: var(--gray-1);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-3);
+}
+
+/* button checkbox */
+
+.btn-checkbox {
+    background-color: var(--white);
+    padding: 15px 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+
+
+
+
+/* navbar */
+
+.navbar-brand img {
+    
+}
+
+.nav-link {
+    font-size: var(--text-regular);
+    font-weight: var(--font-weight-semibold);
+    color: var(--black) !important;
+}
+
+/* section hero */
+section.hero {
+    margin: 5rem 0;
+}
+
+.text-label,
+.text-hero-bold,
+.text-hero-regular {
+    margin: 24px 0;
+}
+
+.text-label {
+    color: var(--black);
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-medium);
+    line-height: 20px;
+}
+
+.text-hero-bold {
+    color: var(--black);
+    font-size: var(--header-4);
+    font-weight: var(--font-weight-bold);
+    line-height: 46px;
+}
+
+.text-hero-regular {
+    color: var(--black);
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-medium);
+}
+
+
+
+.pt3 {
+    padding-top: 1em;
+  }
+
+.pb3 {
+    padding-bottom: 1em;
+}
