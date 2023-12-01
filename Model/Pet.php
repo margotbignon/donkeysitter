@@ -1,28 +1,31 @@
 <?php
 
 class Pet {
-    private int $id;
+    private int $id = 0;
 
     private string $name;
-    private string $image;
     private string $description;
     private string $race;
     private string $gender;
+    private string $yearBirth;
+    private ?string $masterId = NULL;
+    private string $animalTypeId;
+    private string $sizeId;
 
-    private int $masterId;
-    private int $animalTypeId;
-    private int $sizeId;
 
-
-    public function __construct(int $id, string $name, string $image, string $description, string $race,string $gender, int $masterId, int $animalTypeId, int $sizeId)
+    public function __construct(string $name, string $description, string $race,string $gender, string $yearBirth, string $animalTypeId, string $sizeId, string $masterId = NULL, int $id = 0)
     {
+
         $this->name = $name;
-        $this->image=$image;
         $this->description= $description;
         $this->race=$race;
-        $this->masterId=$masterId;
+        $this->gender=$gender;
+        $this->yearBirth=$yearBirth;
         $this->animalTypeId =$animalTypeId;
         $this->sizeId =$sizeId;
+        $this->masterId=$masterId;
+        $this->id = $id;
+
     }
 
 
@@ -46,25 +49,7 @@ class Pet {
         return $this;
     }
 
-    /**
-     * Get the value of image
-     */ 
-    public function getImage()
-    {
-        return $this->image;
-    }
 
-    /**
-     * Set the value of image
-     *
-     * @return  self
-     */ 
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
     /**
      * Get the value of description
@@ -141,9 +126,8 @@ class Pet {
      */ 
     public function setMasterId($masterId)
     {
-        $this->masterId = $masterId;
+            return $this;
 
-        return $this;
     }
 
     /**
@@ -202,6 +186,26 @@ class Pet {
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of yearBirth
+     */ 
+    public function getYearBirth()
+    {
+        return $this->yearBirth;
+    }
+
+    /**
+     * Set the value of yearBirth
+     *
+     * @return  self
+     */ 
+    public function setYearBirth($yearBirth)
+    {
+        $this->yearBirth = $yearBirth;
 
         return $this;
     }
