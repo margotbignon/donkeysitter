@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg sticky bg-warning">
   <div class="container-lg mt-4">
     <a class="navbar-brand" href="index.php" alt="brand">
-      <img src="../Assets/logo.svg" Sitters>
+      <img src="../Assets/logo.svg">
     </a>
     <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <i class='bx bx-menu-alt-left'></i>
