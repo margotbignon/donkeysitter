@@ -9,7 +9,7 @@ class ServicesRepository
     }
 
     public function getRows(){
-        //2 query : all cars
+        //2 query : all services
        $query = "SELECT * FROM services";
        $statement = $this->pdo->query($query);
        $services = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -18,7 +18,7 @@ class ServicesRepository
 
    // read one row
    public function getRow($id){
-    // 3 query car where id = $_GET (prepare)
+    // 3 query service where id = $_GET (prepare)
     $query = "SELECT * FROM services where idservice=:myId";
     // query prepare with PDO 
     $statement = $this->pdo->prepare($query);

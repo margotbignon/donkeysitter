@@ -1,37 +1,58 @@
 <?php 
 require_once "UsersRepository.php";
-class MasterRepository extends UsersRepository {
+
+class PetsittersRepository extends UsersRepository {
     private $pdo;
     public function __construct() {
         $this->pdo=Database::getPdo();
     }
-
-    public function getRow(int $id) : array {
-        $query = "SELECT * FROM petSitters WHERE idpetSitter= :myId"; 
-        $query=<<<SQL
-        SELECT
-        FROM 
-            petSitters ps
-        LEFT JOIN
-            petSitterServices pss
-        ON  
-            ps.idpetSitter = pss.idpetSitter
-        LEFT JOIN
-            services s 
-        ON
-            pss.service_id = s.idservice
-        LEFT JOIN
-            residencesTypes rt
-        ON 
-            ps.residenceType_id = rt.idresidenceType
-        GROUP BY 
-            ps.idpetSitter
-        HAVING
-            ps.idpetSitter = :myId; 
+// 
+//     public function getRow(int $id) : array {
+//         $query = "SELECT * FROM petSitters WHERE idpetSitter= :myId"; 
+//         $query=<<<SQL
+//         SELECT
+//         FROM 
+//             petSitters ps
+//         LEFT JOIN
+//             petSitterServices pss
+//         ON  
+//             ps.idpetSitter = pss.idpetSitter
+//         LEFT JOIN
+//             services s 
+//         ON
+//             pss.service_id = s.idservice
+//         LEFT JOIN
+//             residenceTypes rt
+//         ON 
+//             ps.residenceType_id = rt.idresidenceType
+//         GROUP BY 
+//             ps.idpetSitter
+//         HAVING
+//             ps.idpetSitter = :myId; 
               
-SQL;
+// SQL;
+
+//-----------------REQUÊTE MODIFIÉE ------------------//
+        public function getRow($id)  {
+        $query = "SELECT 
+        ps.*, pss.*, s.*, rt.*, a.*, av.*
+    FROM 
+        petSitters ps
+    LEFT JOIN 
+        petSitterServices pss ON ps.idpetSitter = pss.petSitter_id
+    LEFT JOIN 
+        services s ON pss.service_id = s.idservice
+    LEFT JOIN 
+        residenceTypes rt ON ps.residenceType_id = rt.idresidenceType
+    LEFT JOIN 
+        animalTypes a ON ps.animalType_id = a.idanimalType
+    LEFT JOIN 
+        availabilities av ON ps.idpetSitter = av.petSitter_id
+    WHERE 
+        ps.idpetSitter = :id";
+///--------------------------------------------------------
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':myId', $id, \PDO::PARAM_INT); 
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT); 
         $statement->execute();
         $petSitter = $statement->fetch(PDO::FETCH_ASSOC);
         return $petSitter;
