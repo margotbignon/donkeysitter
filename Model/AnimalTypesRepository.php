@@ -8,8 +8,9 @@ class AnimalTypesRepository
         $this->pdo=Database::getPdo();
     }
 
-    public function getRows(){
-        //2 query : all cars
+    public function getRows(): array
+    {
+        //2 query : all animalTypes
        $query = "SELECT * FROM animalTypes";
        $statement = $this->pdo->query($query);
        $animalTypes = $statement->fetchAll(PDO::FETCH_ASSOC);
