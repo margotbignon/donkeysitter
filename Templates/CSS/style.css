@@ -14,9 +14,26 @@ body {
 }
 
 
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
 h1,h2,h3,h4,h5,h6 {
-    font-weight: 700;
+    font-weight: 600;
     color: #1B1B1B;
+}
+
+.card-title {
+    font-size: 22px;
+    font-weight: var(--font-weight-semibold);
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: var(--font-weight-semibold);
+
 }
 
 :root {
@@ -24,7 +41,7 @@ h1,h2,h3,h4,h5,h6 {
     --primary: #F63D3D;
     --primary-light: #D93A3A;
     --black: #1B1B1B;
-    --gray-1: #798092;
+    --gray-1: #545964;
     --gray-2: #E6E6ED;
     --gray-3: #c9c9ce;  
     --white: #FFFFFF;
@@ -54,8 +71,17 @@ h1,h2,h3,h4,h5,h6 {
     padding: 15px 100px;
     font-weight: 600;
     border-radius: 8px;
-    font-size: var(--text-medium);
+    font-size: var(--text-regular);
     font-weight: var(--font-weight-semibold);
+}
+
+.btn-small {
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    font-size: var(--text-light);
+    font-weight: var(--font-weight-semibold);
+    color: var(--white)
 }
 
 .btn-primary {
@@ -78,6 +104,7 @@ h1,h2,h3,h4,h5,h6 {
 .btn-secondary {
     background-color: var(--gray-2);
     color: var(--gray-1);
+    border: none;
 }
 
 .btn-secondary:focus {
@@ -98,12 +125,10 @@ h1,h2,h3,h4,h5,h6 {
     border-radius: 8px;
     font-size: var(--text-regular);
     font-weight: var(--font-weight-medium);
+    width: 100%;
+    text-align: center;
 }
 
-.btn-checkbox {
-    
-      display: none;
-    }
 
 input:checked  {
     color: #ffffff;
@@ -126,6 +151,7 @@ input:checked  {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
+    z-index: 200;
 }
 
 .navbar-brand img {
@@ -146,7 +172,7 @@ section.hero {
 .text-label,
 .text-hero-bold,
 .text-hero-regular {
-    margin: 24px 0;
+    margin: 16px 0;
 }
 
 .text-label {
@@ -169,7 +195,11 @@ section.hero {
     font-weight: var(--font-weight-medium);
 }
 
-
+.text-label-regular {
+    color: var(--black);
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-medium);
+}
 
 .pt3 {
     padding-top: 1em;
@@ -177,4 +207,41 @@ section.hero {
 
 .pb3 {
     padding-bottom: 1em;
+}
+
+.p-2 {
+    padding: 0rem!important;
+}
+
+/* page liste pet sitters */
+
+/* sticky filters */
+
+.search-column {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 5rem;
+}
+
+
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: var(--primary);
+}
+
+.rounded-image {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.rounded-image-large {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
