@@ -12,8 +12,12 @@ class AnimalTypesRepository
         //2 query : all cars
        $query = "SELECT * FROM animalTypes";
        $statement = $this->pdo->query($query);
-       $animalTypes = $statement->fetchAll(PDO::FETCH_ASSOC);
-       return $animalTypes;
+       $animalTypesDB = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $animalTypes = [];
+       foreach ($animalTypesDB as $animalTypeDB) {
+           $animalTypes[] = new AnimalTypes($animalTypeDB['idanimalType'], $animalTypeDB['type']);
+       }
+      return $animalTypes;
    }
 
    // read one row

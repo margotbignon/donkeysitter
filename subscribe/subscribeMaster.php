@@ -1,4 +1,5 @@
 <?php
+include "../Templates/header.php";
 require_once "../Model/SizeRepository.php";
 require_once "../Model/AnimalTypesRepository.php";
 require_once "../Model/Database.php";
@@ -7,6 +8,9 @@ require_once "../Model/config.php";
 require_once "../Model/MasterRepository.php";
 require_once "../Model/Pet.php";
 require_once "../Model/PetRepository.php";
+require_once "../Model/AnimalTypes.php";
+require_once "../Model/UserLogin.php";
+require_once "../Model/UsersLoginRepository.php";
 $sizeRepository = new SizeRepository();
 $sizes = $sizeRepository -> getRows();
 $animalTypesRepository = new AnimalTypesRepository();
@@ -34,35 +38,22 @@ if (!empty($_POST)) {
   $yearBirth = $_POST['yearBirth'];
   $gender = $_POST['gender'];
   $size = $_POST['size'];
-  $master = new Masters($firstname, $lastname, $phoneNb, $email, $password, $birthDate, $street, $postalCode, $city, $image);
+  $userLogin = new UserLogin($email, $password, 'master');
+  $insertUserLogin = new UsersLoginRepository();
+  $userId = $insertUserLogin->insertRow($userLogin, $confirmPassword);
+  $master = new Masters($firstname, $lastname, $phoneNb, $birthDate, $street, $postalCode, $city, $userId, $image);
   $insertRowMasters = new MasterRepository();
   if (!empty($_FILES['profilPicture']['name'])) {
-    $lastInsertId = $insertRowMasters->insertRowWithImage($master, $checkImage, $confirmPassword, $ageDifference);
+    $lastInsertId = $insertRowMasters->insertRowWithImage($master, $checkImage,$ageDifference);
   } else {
-    $lastInsertId = $insertRowMasters->insertRow($master, $confirmPassword, $ageDifference);
+    $lastInsertId = $insertRowMasters->insertRow($master, $ageDifference);
   }
+  /*
   $pet = new Pet($animalName, $description, $race, $gender, $yearBirth, $animalType, $size, $lastInsertId);
   $insertRowMasters = new PetRepository();
-  $insertRowMasters->insertRow($pet);
+  $insertRowMasters->insertRow($pet);*/
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello!</title>
-    <meta name="description" content="description"/>
-    <meta name="author" content="author" />
-    <meta name="keywords" content="keywords" />
-    <link rel="stylesheet" href="style.css" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <style type="text/css">.body { width: auto; }</style>
-  </head>
-  <body class="bg-warning" style="font-family:'Montserrat', sans-serif">
     <section class="container mt-5 bg-transparent suscribeform rounded w-50">
         <h1 class="text-center">Je veux confier mon animal <br>Inscription</h1>
         <form method="post" class="d-flex  flex-column align-items-center" enctype="multipart/form-data">
@@ -95,7 +86,7 @@ if (!empty($_POST)) {
             <select id="animalType" name = "animalType" class="mt-3 rounded border-0 p-2 w-75">
               <option value="" class="text-muted">Quel est le type de votre animal ?</option>
               <?php foreach ($animalTypes as $animalType) : ?>  
-                <option value="<?= $animalType['idanimalType']?>"><?= $animalType['type']?></option>
+                <option value="<?= $animalType->getId()?>"><?=$animalType->getAnimalType()?></option>
               <?php endforeach ?>
             </select>
             <select id="yearBirth" name = "yearBirth" class="mt-3 rounded border-0 p-2 w-75">
@@ -122,6 +113,4 @@ if (!empty($_POST)) {
 
         </form>
   </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
-  </body>
-</html>
+  <?php include "../Templates/footer.php";?>

@@ -4,13 +4,15 @@ class PetSitters extends Users {
    
 
     public function __construct(
-        int $id, string $firstName, string $lastName, string $phoneNb, string $email, string $passWord, string $birthDate, string $image, string $street, string $PostalCode, string $City,
+        string $firstName, string $lastName, string $phoneNb, string $birthDate, string $street, string $PostalCode, string $City, string $iduser,  
         private string $description, 
         private string $petterSince, 
-        private int $residenceType_id,
-        
+        private string $residenceType_id, 
+        private string $animalType,
+        string $image,
+        int $id = 0
         ) {
-            parent::__construct($id, $firstName, $lastName, $phoneNb, $email, $passWord, $birthDate, $image, $street, $PostalCode, $City);
+            parent::__construct($firstName, $lastName, $phoneNb, $birthDate, $street, $PostalCode, $City, $iduser, $image, $id);
         }
 
         public function getResidenceType_id() : int
@@ -47,6 +49,20 @@ class PetSitters extends Users {
         public function setDescription($description) : self
         {
                 $this->description = $description;
+
+                return $this;
+        }
+
+
+        public function getAnimalType()
+        {
+                return $this->animalType;
+        }
+
+
+        public function setAnimalType($animalType)
+        {
+                $this->animalType = $animalType;
 
                 return $this;
         }

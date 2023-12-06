@@ -5,12 +5,12 @@ abstract class Users {
                 protected string $firstName, 
                 protected string $lastName, 
                 protected string $phoneNb,
-                protected string $email, 
-                protected string $passWord, 
                 protected string $birthDate, 
                 protected string $street, 
                 protected string $PostalCode,
-                protected string $City, protected ?string $image = NULL,int $id = 0
+                protected string $City,
+                protected string $userid,
+                protected ?string $image = NULL,int $id = 0
                 ) {
                         $this->id = $id;
                 }
@@ -69,29 +69,9 @@ abstract class Users {
         }
 
 
-        public function getEmail() : string
-        {
-                return $this->email;
-        }
 
-        public function setEmail($email) : self
-        {
-                $this->email = $email;
 
-                return $this;
-        }
 
-        public function getPassWord() : string
-        {
-                return $this->passWord;
-        }
-
-        public function setPassWord($passWord) : self
-        {
-                $this->passWord = $passWord;
-
-                return $this;
-        }
 
         public function getBirthDate() : string
         {
@@ -155,5 +135,22 @@ abstract class Users {
 
                 return $this;
         }
+
         
+        
+
+
+                public function getUserid()
+                {
+                                return $this->userid;
+                }
+
+
+
+                public function setUserid($userid)
+                {
+                                $this->userid = $userid;
+
+                                return $this;
+                }
 }
