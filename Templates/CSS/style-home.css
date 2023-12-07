@@ -96,26 +96,83 @@ h1,h2,h3,h4,h5,h6 {
     padding: 15px 15px;
     font-weight: 600;
     border-radius: 8px;
-    font-size: var(--text-regular);
-    font-weight: var(--font-weight-medium);
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-semibold);
 }
 
-.btn-checkbox {
+
+/* ajout de style  */
     
-      display: none;
-    }
+.form-home {
+    max-width:440px;
+    margin-bottom:100px;
+}
+.form-select-home {
+    max-width:440px;
+}
 
-input:checked  {
-    color: #ffffff;
-    background-color: var(--primary);
-    border-color: var(--primary-light);
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    i:before {
-      content: "\f046";
-    }
-  }
+.display-none input[type="radio"] {
+    display: none;
+}
 
+form.form-home label{
+margin:8px 0px 8px 0px;
+}
+
+input.form-date {
+    width:200px;
+    padding:15px;
+}
+
+.form-postalcode {
+    width:100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.radio-container {
+    margin-right: 20px;
+    width:100%;
+}
+
+.radio {
+    display: none; /* Masquer l'input radio */
+}
+
+.radio-label {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    color: #1B1B1B;
+    min-width: 200px;
+    max-width: 300px;
+    height: auto;
+    padding: 15px 15px;
+    margin-right: 20px;
+    align-items: center;
+    cursor: pointer;
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-semibold);
+}
+
+.radio-label:hover {
+    background-color: #1B1B1B;
+    color: #FFFFFF;
+}
+
+.radio:checked + .radio-label {
+    background-color: #1B1B1B;
+    color: #FFFFFF;
+}
+
+/* ------------- */
 
 
 

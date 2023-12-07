@@ -3,16 +3,18 @@ require_once "Users.php";
 class PetSitters extends Users {
    
 
+
     public function __construct(
-        string $firstName, string $lastName, string $phoneNb, string $birthDate, string $street, string $PostalCode, string $City, string $iduser,  
+        string $firstName, string $lastName, string $phoneNb, string $birthDate, string $street, string $PostalCode, string $City, string $userId,  
         private string $description, 
         private string $petterSince, 
         private string $residenceType_id, 
-        private string $animalType,
+        private string $animalTypeId,
         string $image,
         int $id = 0
         ) {
-            parent::__construct($firstName, $lastName, $phoneNb, $birthDate, $street, $PostalCode, $City, $iduser, $image, $id);
+            parent::__construct($firstName, $lastName, $phoneNb, $birthDate, $street, $PostalCode, $City, $userId, $image, $id);
+
         }
 
         public function getResidenceType_id() : int
@@ -53,16 +55,42 @@ class PetSitters extends Users {
                 return $this;
         }
 
-
-        public function getAnimalType()
+        /**
+         * Get the value of userId
+         */ 
+        public function getUserId()
         {
-                return $this->animalType;
+                return $this->userId;
         }
 
-
-        public function setAnimalType($animalType)
+        /**
+         * Set the value of userId
+         *
+         * @return  self
+         */ 
+        public function setUserId($userId)
         {
-                $this->animalType = $animalType;
+                $this->userId = $userId;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of animaltypeId
+         */ 
+        public function getAnimaltypeId()
+        {
+                return $this->animaltypeId;
+        }
+
+        /**
+         * Set the value of animaltypeId
+         *
+         * @return  self
+         */ 
+        public function setAnimaltypeId($animaltypeId)
+        {
+                $this->animaltypeId = $animaltypeId;
 
                 return $this;
         }
