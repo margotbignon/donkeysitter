@@ -73,7 +73,7 @@ class PetRepository {
     public function updateRow(Pet $pet): bool
     {
         $query = "UPDATE pets 
-                  SET name = :name, yearBirth, description = :description, race = :race, gender = :gender, 
+                  SET name = :name, yearBirth = :yearBirth, description = :description, race = :race, gender = :gender, 
                       master_id = :masterId, animalType_id = :animalTypeId, size_id = :sizeId 
                   WHERE idpet = :id";
         

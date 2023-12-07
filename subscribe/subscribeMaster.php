@@ -48,10 +48,9 @@ if (!empty($_POST)) {
   } else {
     $lastInsertId = $insertRowMasters->insertRow($master, $ageDifference);
   }
-  /*
   $pet = new Pet($animalName, $description, $race, $gender, $yearBirth, $animalType, $size, $lastInsertId);
   $insertRowMasters = new PetRepository();
-  $insertRowMasters->insertRow($pet);*/
+  $insertRowMasters->insertRow($pet);
 }
 ?>
     <section class="container mt-5 bg-transparent suscribeform rounded w-50">
