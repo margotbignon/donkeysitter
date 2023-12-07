@@ -3,7 +3,7 @@ require_once 'Model/PetSitters.php';
 require_once "Model/PetSittersRepository.php";
 require_once "Model/Database.php";
 require_once 'Model/ServicesRepository.php';
-
+include 'Templates/nav.php';
 
 $id = 3;
 
@@ -11,13 +11,10 @@ $connectPetSitter = new PetsittersRepository();
 $petsitter = $connectPetSitter-> getRow($id);
 
 
-
 // exit();
 
 $title = 'Profil du Pet Sitter';
 ?>
-
-
 
 <!DOCTYPE html>
   <html lang="en">
@@ -29,11 +26,10 @@ $title = 'Profil du Pet Sitter';
       <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="profil-sitter-styles.css">
+      <link rel="stylesheet" href="sitters-styles.css">
     <title><?=$title?></title>
 </head>
 <body>
-<!-- inclure le header avec la nav-bar -->
 
 
 <div class="profil-container">

@@ -1,4 +1,5 @@
 <?php
+require_once 'AnimalTypes.php';
 
 class AnimalTypesRepository
 {
@@ -8,12 +9,18 @@ class AnimalTypesRepository
         $this->pdo=Database::getPdo();
     }
 
-    public function getRows(){
-        //2 query : all cars
+    public function getRows(): array
+    {
+        //2 query : all animalTypes
        $query = "SELECT * FROM animalTypes";
        $statement = $this->pdo->query($query);
-       $animalTypes = $statement->fetchAll(PDO::FETCH_ASSOC);
-       return $animalTypes;
+       $animalTypesDB = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $animalTypes = [];
+       foreach ($animalTypesDB as $animalTypeDB) {
+           $animalTypes[] = new AnimalTypes($animalTypeDB['idanimalType'], $animalTypeDB['type']);
+       }
+      return $animalTypes;
+
    }
 
    // read one row
