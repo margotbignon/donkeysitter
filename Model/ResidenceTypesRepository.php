@@ -1,6 +1,6 @@
 <?php
-
-class ServicesRepository
+require_once "ResidenceTypes.php";
+class ResidenceTypesRepository
 {
     private $pdo;
     public function __construct()
@@ -10,9 +10,14 @@ class ServicesRepository
 
     public function getRows(){
         //2 query : all cars
-       $query = "SELECT * FROM residenceType";
+       $query = "SELECT * FROM residenceTypes";
        $statement = $this->pdo->query($query);
-       $residences = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $residencesDB = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $residences = [];
+       foreach ($residencesDB as $residenceDB) {
+            $residences[] = new ResidenceTypes ($residenceDB['idresidenceType'], $residenceDB['residenceType']);
+       }
+       
        return $residences;
    }
 

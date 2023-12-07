@@ -14,13 +14,13 @@ class AnimalTypesRepository
         //2 query : all animalTypes
        $query = "SELECT * FROM animalTypes";
        $statement = $this->pdo->query($query);
-       $animalTypesBD = $statement->fetchAll(PDO::FETCH_ASSOC);
-       $animalTypes =[];
-        foreach($animalTypesBD as $animalTypeBD){
-            $animalTypes [] = new AnimalTypes($animalTypeBD['idanimalType'], $animalTypeBD['type']);
-        }
-       
-       return $animalTypes;
+       $animalTypesDB = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $animalTypes = [];
+       foreach ($animalTypesDB as $animalTypeDB) {
+           $animalTypes[] = new AnimalTypes($animalTypeDB['idanimalType'], $animalTypeDB['type']);
+       }
+      return $animalTypes;
+
    }
 
    // read one row

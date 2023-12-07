@@ -1,5 +1,5 @@
 <?php
-
+require_once "Services.php";
 class ServicesRepository
 {
     private $pdo;
@@ -12,7 +12,12 @@ class ServicesRepository
         //2 query : all services
        $query = "SELECT * FROM services";
        $statement = $this->pdo->query($query);
-       $services = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $servicesDB = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $services = [];
+        foreach ($servicesDB as $serviceDB) {
+            $services[] = new Services($serviceDB['idservice'], $serviceDB['serviceType']);
+
+        }
        return $services;
    }
 
