@@ -21,7 +21,11 @@ Class ServicesCheck {
         foreach ($this->servicesCheck as $serviceCheck) {
             foreach ($services as $service) {
                 if ($serviceCheck == $service->getId()) {
-                    echo "<input type='text' name='price[".$service->getId()."]' placeholder = 'Prix pour ".$service->getServiceType()."' class='mt-3 rounded border-0 p-2 w-75'>";
+                    echo "
+                    <div class='mt-3'>
+                        <p class='text-label-regular'>Prix pour ".$service->getServiceType()."</p>
+                        <input type='number' name='price[".$service->getId()."]' placeholder = '0' class='form-control mt-3 pt3 pb3'>
+                    </div>";
                 }
             }
         }
