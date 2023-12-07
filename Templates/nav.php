@@ -16,7 +16,7 @@
           <a class="nav-link me-4" href="../subscribe/subscribeMaster.php">S’inscrire</a>
         </li>
 
-         <li class="nav-item dropdown">
+<li class="nav-item dropdown">
         <?php
         if (!isset($_SESSION['user'])){ 
          echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="../subscribe/login.php" role="button" aria-haspopup="true" aria-expanded="false">Se connecter</a>';
