@@ -23,7 +23,7 @@ require 'templates/header-var.php';
             </div>
 
             <div class="mb-3">
-              <p class="card-text fw-medium">Type de prestation: hébergement</p>
+              <p class="card-text fw-medium">Type de prestation : hébergement</p>
               <p class="card-text fw-medium">Date de début : hébergement</p>
               <p class="card-text fw-medium">Date de fin : hébergement</p>
               <p class="card-text fw-bold">Prix total: 22€</p>
