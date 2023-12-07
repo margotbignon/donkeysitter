@@ -19,6 +19,56 @@ class ReservationRepository {
 
     }
 
+    public function getRowBeforeNow(int $masterId) : array {
+    $query=<<<SQL
+    SELECT 
+        r.*, p.firstname as FirstNamePetSitter, p.idpetSitter, m.idmaster, m.firstname as FirstNameMaster 
+    FROM 
+        donkeysitter.reservations r
+    LEFT JOIN 
+        donkeySitter.petsitters p
+    ON 
+        r.petSitter_id = p.idpetSitter
+    LEFT JOIN 
+        donkeySitter.masters m
+    ON 
+        r.master_id = m.idmaster
+    WHERE 
+        master_id = :masterId AND startDate < NOW();
+SQL;
+    $statement = $this->pdo->prepare($query); 
+    $statement->bindValue(':masterId', $masterId, PDO::PARAM_INT);
+    $statement->execute();
+    $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $reservations;
+
+    }
+
+    public function getRowAfterNow(int $masterId) : array {
+        $query=<<<SQL
+    SELECT 
+        r.*, p.firstname as FirstNamePetSitter, p.idpetSitter, m.idmaster, m.firstname as FirstNameMaster 
+    FROM 
+        donkeysitter.reservations r
+    LEFT JOIN 
+        donkeySitter.petsitters p
+    ON 
+        r.petSitter_id = p.idpetSitter
+    LEFT JOIN 
+        donkeySitter.masters m
+    ON 
+        r.master_id = m.idmaster
+    WHERE 
+        master_id = :masterId AND startDate < NOW();
+SQL;
+        $statement = $this->pdo->prepare($query); 
+        $statement->bindValue(':masterId', $masterId, PDO::PARAM_INT);
+        $statement->execute();
+        $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $reservations;
+    
+        }
+
     public function deleteRow(int $id) : array
     {
         $query = "DELETE * FROM reservations WHERE idreservation = :id";
