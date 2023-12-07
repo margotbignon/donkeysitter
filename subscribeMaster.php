@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'templates/header-var.php';
 require_once "Model/SizeRepository.php";
 require_once "Model/AnimalTypesRepository.php";
