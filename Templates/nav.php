@@ -15,20 +15,18 @@
         <li class="nav-item">
           <a class="nav-link me-4" href="../subscribe/subscribeMaster.php">S’inscrire</a>
         </li>
-        
-        <li class="nav-item dropdown text-end">
+
+<li class="nav-item dropdown">
         <?php
         if (!isset($_SESSION['user'])){ 
          echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="../subscribe/login.php" role="button" aria-haspopup="true" aria-expanded="false">Se connecter</a>';
         }
         ?>
-
-          
-            <?php
+         <?php
             if (isset($_SESSION['user'])){
             ?>
-            <div class="dropdown-menu" data-bs-popper="static">
-            <a class="dropdown-item" href="#">Mon profil</a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Informations personnelles</a>
             <a class="dropdown-item" href="#">Mes réservations</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Me déconnecter</a>
