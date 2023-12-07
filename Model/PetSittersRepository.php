@@ -9,7 +9,7 @@ class PetsittersRepository extends UsersRepository {
 
         public function getRow($id)  {
         $query = "SELECT 
-        ps.*, pss.*, s.*, rt.*, a.*, av.*
+        ps.*, pss.*, s.*, rt.*, a.*, av.*, u.*
     FROM 
         petSitters ps
     LEFT JOIN 
@@ -22,14 +22,33 @@ class PetsittersRepository extends UsersRepository {
         animalTypes a ON ps.animalType_id = a.idanimalType
     LEFT JOIN 
         availabilities av ON ps.idpetSitter = av.petSitter_id
+    LEFT JOIN users u ON ps.userid = u.iduser
     WHERE 
         ps.idpetSitter = :id";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT); 
         $statement->execute();
         $petSitter = $statement->fetch(PDO::FETCH_ASSOC);
+        $petSitter = new PetSitters(
+        $petSitter['idpetSitter'],
+        $petSitter['firstName'],
+        $petSitter['lastName'],
+        $petSitter['phoneNb'],
+        $petSitter['birthDate'],
+        $petSitter['image'],
+        $petSitter['sitterStreet'],
+        $petSitter['sitterPostalCode'],
+        $petSitter['sitterCity'],
+        $petSitter['description'],
+        $petSitter['petSitterSince'],
+        $petSitter['residenceType_id'],
+        $petSitter['animalType_id'],
+        $petSitter['userid']
+    );
         return $petSitter;
     }
+
+
 
 
     public function countFrom($table)

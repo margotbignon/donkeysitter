@@ -1,4 +1,5 @@
 <?php
+require_once 'AnimalTypes.php';
 
 class AnimalTypesRepository
 {
@@ -13,7 +14,12 @@ class AnimalTypesRepository
         //2 query : all animalTypes
        $query = "SELECT * FROM animalTypes";
        $statement = $this->pdo->query($query);
-       $animalTypes = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $animalTypesBD = $statement->fetchAll(PDO::FETCH_ASSOC);
+       $animalTypes =[];
+        foreach($animalTypesBD as $animalTypeBD){
+            $animalTypes [] = new AnimalTypes($animalTypeBD['idanimalType'], $animalTypeBD['type']);
+        }
+       
        return $animalTypes;
    }
 
