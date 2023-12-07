@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         Des services de pet sitting à proximité. Réservez des pet sitters de confiance !
                     </div>
 
+                    <div class="bg-white shadow rounded-4 border-0 search-column py-4 px-5 mb-5">
                     <div class="text-hero-regular text-center text-md-start fw-bold">
                         Faites votre recherche parmi nos <?=$countPetSitters?> pet sitters&nbsp;!
                     </div>
@@ -79,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="alert alert-danger" role="alert"><?=$errorMessage?></div>
                     <?php endif;?>
                     <label for="type" class="text-hero-regular text-center text-md-start">Je cherche un service pour</label>
-                    <select class="form-select form-select-home shadow-sm pt-3 pb-3 border-0 mb-3" aria-label="Default select example" name="type" required>
+                    <select class="form-select form-select-home shadow-sm pt-3 pb-3 border mb-3" aria-label="Default select example" name="type" required>
                         <option value="" selected disabled hidden>Sélectionner</option>
                         <?php foreach ($animalTypes as $type): ?>
                             <option value="<?= $type->getId()?>"><?= $type->getAnimalType() ?></option>
@@ -98,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <?php foreach ($services as $service): ?>
                             <div class="flex space-between radio-container">
                                 <input type="radio" autocomplete="off" name="service" value="<?= $service->getId() ?>" id="service-<?= $service->getId() ?>" class="radio" required />
-                                <label class="radio-label" for="service-<?= $service->getId() ?>">
+                                <label class="radio-label border text-center" for="service-<?= $service->getId() ?>">
                                     <?= $service->getServiceType() ?>
                                 </label>
                             </div>
@@ -121,11 +122,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
                     </div>
 
-                    <div class="cta d-grid gap-2">
+                    <div class="cta d-grid gap-2 mt-3">
                         <button type="submit" class="btn btn-primary">Trouver mon pet sitter</button>
                     </div>
                 </form>
             </div>
+          </div>
         </div>
     </div>
 </div>

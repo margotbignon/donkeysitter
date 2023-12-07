@@ -1,51 +1,48 @@
 <?php
+session_start();
+include "Templates/header-var.php";
+require_once "Model/UsersRepository.php";
+require_once "Model/UsersLoginRepository.php";
+require_once "Model/Database.php";
+require_once "Model/Masters.php";
+require_once "Model/config.php";
+if (!empty($_POST)) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $login = new UsersLoginRepository();
+    $getLogin = $login->getUsertoLogin($email, $password);
+    if ($getLogin && password_verify($password, $getLogin['password'])) {
 
-require 'templates/header-var.php';
+        if (!empty($getLogin['idpetSitter'])) {
+            $SESSION['user']['id'] = $getLogin['idpetSitter'];
+        } else {
+            $SESSION['user']['id'] = $getLogin['idmaster'];
+        }
+            $SESSION['user']['role'] = $getLogin['role'];
+    } else if (!empty($password && !empty($email))) {
+        echo "<center>Les informations saisies n'ont pas permi de vous identifier. Veuillez vérifier vos informations</center>";
+    }
+    }
 
 ?>
 
-<div class="container-lg ">
-  <h2 class="mb-3 pt-5">Récapitulatif de réservation :</h2>
-
+<div class="container-lg d-flex align-items-center justify-content-center" style="min-height: 80vh;">
     <div class="row">
-    <!-- Réservation à venir -->
-    
-    <!-- Card conteneur -->
-      <div class="col-md-4">
-        <div class="card rounded-4 shadow border-0 px-4 py-4 mt-4">
-        <div class="card-body pb-3">
-                
-            <div class="d-flex align-items-center mb-3 fw-bold">
-              <div class="circle p-2 me-2"></div>
-              <div class="p-2">
-              Statut: en attente de validation 
-              </div>
-            </div>
+        <div class="col-md-2"></div>
 
-            <div class="mb-3">
-              <p class="card-text fw-medium">Type de prestation: hébergement</p>
-              <p class="card-text fw-medium">Date de début: hébergement</p>
-              <p class="card-text fw-medium">Date de fin : hébergement</p>
-              <p class="card-text fw-bold">Prix total: 22€</p>
-            </div>
-                
-            <hr>
-
-            <div class="d-flex align-items-center pt-2">
-              <div class="p-2">
-                <img src="../Assets/user1.jpg" class="rounded-image" alt="Avatar">
-              </div>
-              <div class="p-2 user-name ms-3">
-                Dalla
-              </div>
-            </div>
-            <div class="p-2 ms-auto mt-4">
-                <input type="submit" class="btn-small btn-primary" value="Confirmer ma demande">
+        <div class="col-md-8 d-flex flex-column align-items-center justify-content-center">
+            <div class="bg-white shadow rounded-4 border-0 search-column py-5 px-5">
+                <div class="header-4 text-align-center justify-content-center">
+                    <h4 class="text-center">Votre demande a bien été prise en compte. Vous pouvez la retrouver dans votre espace personnel.</h4>
+                </div>
+                <div class="text-center">
+                <a href="reservationMaster.php" class="btn btn-primary mt-3">Mes réservations</a>
+                </div>
             </div>
         </div>
-       </div>
-      </div>
+
+        <div class="col-md-2"></div>
     </div>
-
-
 </div>
+
+<?php include "Templates/footer.php";?>
