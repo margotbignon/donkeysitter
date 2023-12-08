@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 'endDate' => $_POST['endDate'],
             ];
 
-            header('Location:sitters-list.php');
+            header('Location:listPetSitter.php');
             exit();
         }
 

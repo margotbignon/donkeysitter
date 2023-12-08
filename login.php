@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include "Templates/header.php";
 require_once "Model/UsersRepository.php";
 require_once "Model/UsersLoginRepository.php";
