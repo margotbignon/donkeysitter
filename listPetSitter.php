@@ -37,18 +37,16 @@ if (!empty($errorMessage)) {
     echo `$errorMessage`;
 }
 
-
-if (empty($petsitter)) {
+if (empty($petsitters)) {
     $petsitters = $connPetSittersRepo->getRowsByCity($city);
     $count = count($petsitters);
     $result =  "Nous avons trouvé ".$count . " pet sitter(s) dans la ville de votre choix.";
-    
 
-}
-    else {
-        $result =  "Aucun pet sitter ne correspond à votre recherche.";
+    if (empty($petsitters)) {
         $petsitters = $connPetSittersRepo->getAllRows();
+        $result =  "Aucun pet sitter ne correspond à votre recherche.";
     }
+}
 
 
 
@@ -74,11 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 'endDate' => $_POST['endDate'],
             ];
 
-            // Générer le lien vers la page avec les paramètres mis à jour
             $redirectLink = 'listPetSitter.php?';
             $redirectLink .= http_build_query($_SESSION['search']);
 
-            // Utiliser JavaScript pour rediriger
             echo "<script>window.location.href = '$redirectLink';</script>";
             exit();
         }
@@ -99,7 +95,7 @@ $avail = "dès aujourd'hui !";
         <div class="col-md-4">
             <div class="bg-white shadow rounded-4 border-0 search-column py-4 px-4">
                 <h4 class="pb-4">Ma recherche</h4>
-                <form class="form-control" action="" method="POST">
+                <form class="form" action="" method="POST">
                     <label for="animalType" class="text-label-regular mb-3">Type d'animal :</label>
                     <select id="animalType" name ="type" class="form-select shadow-sm pt3 pb3 mb-4" aria-label="Default select example">
                         <option value="" selected disabled hidden>Sélectionner</option>
@@ -126,7 +122,7 @@ $avail = "dès aujourd'hui !";
                     </div>
                     <div>
                         <label for="dates" class="text-label-regular mb-3">Dates :</label>
-                        <div class="d-flex flex-row mb-3">
+                        <div class="d-flex flex-wrap mb-3">
                             <div class="p-2">
                                 <input class="shadow-sm pt3 pb3 mb-4 px-3 me-3 border rounded" type="date" id="startDate" name="startDate" value="Date de début"/>
                             </div>
@@ -158,18 +154,11 @@ $avail = "dès aujourd'hui !";
                         <p class="card-text fw-medium"><i class='bx bx-home-heart'></i>Habite en <?= $petsitter['residenceType'] ?></p>
                         
                         <?php
-                        if (!empty($petsitter['startDate'])) {
-                            $startDate = new DateTime($petsitter['startDate']);
-                            $avail = "dès aujourd'hui.";
-
                             if ($startDate <= new DateTime()) {
-                                $starDate = "dès le " . $startDate->format('Y-m-d');
-                            } else {
                                 $starDate = $avail;
+                            } else {
+                                $starDate = "dès le " . $startDate->format('Y-m-d');
                             }
-                        } else {
-                            $starDate = $avail;
-                        }
                         ?>
 
 
