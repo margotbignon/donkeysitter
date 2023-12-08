@@ -245,3 +245,107 @@ section.hero {
     height: 200px;
     object-fit: cover;
 }
+
+
+
+
+/* ajout de style  */
+    
+.form-home {
+    max-width:440px;
+    margin-bottom:100px;
+}
+.form-select-home {
+    max-width:440px;
+}
+
+.display-none input[type="radio"] {
+    display: none;
+}
+
+form.form-home label{
+margin:8px 0px 8px 0px;
+}
+
+input.form-date {
+    width:200px;
+    padding:15px;
+}
+
+.form-postalcode {
+    width:100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.radio-container {
+    margin-right: 20px;
+    width:100%;
+}
+
+.radio-container-list {
+    width:100%;
+    background-color: #1B1B1B;
+}
+
+.radio {
+    display: none; /* Masquer l'input radio */
+}
+
+.radio-label {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    color: #1B1B1B;
+    min-width: 200px;
+    max-width: 300px;
+    height: auto;
+    padding: 15px 15px;
+    margin-right: 20px;
+    align-items: center;
+    cursor: pointer;
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+.radio-label-list {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    color: #1B1B1B;
+    width:100%;
+    margin:0px;
+    height: auto;
+    padding: 15px 15px;
+    align-items: center;
+    cursor: pointer;
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-semibold);
+   
+}
+
+
+.radio-label:hover {
+    background-color: #1B1B1B;
+    color: #FFFFFF;
+}
+
+.radio:checked + .radio-label {
+    background-color: #1B1B1B;
+    color: #FFFFFF;
+}
+
+/* ------------- */

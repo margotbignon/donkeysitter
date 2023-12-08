@@ -9,7 +9,7 @@ class PetsittersRepository extends UsersRepository {
 
         public function getRow($id)  {
         $query = "SELECT 
-        ps.*, pss.*, s.*, rt.*, a.*, av.*, u.*
+        ps.*, pss.*, s.*, rt.*, psat.*, av.*, u.*
     FROM 
         petSitters ps
     LEFT JOIN 
@@ -19,7 +19,7 @@ class PetsittersRepository extends UsersRepository {
     LEFT JOIN 
         residenceTypes rt ON ps.residenceType_id = rt.idresidenceType
     LEFT JOIN 
-        animalTypes a ON ps.animalType_id = a.idanimalType
+    petSitters_animalTypes psat ON ps.idpetSitter = psat.petSitter_id
     LEFT JOIN 
         availabilities av ON ps.idpetSitter = av.petSitter_id
     LEFT JOIN users u ON ps.userid = u.iduser
@@ -29,22 +29,7 @@ class PetsittersRepository extends UsersRepository {
         $statement->bindValue(':id', $id, \PDO::PARAM_INT); 
         $statement->execute();
         $petSitter = $statement->fetch(PDO::FETCH_ASSOC);
-        $petSitter = new PetSitters(
-        $petSitter['idpetSitter'],
-        $petSitter['firstName'],
-        $petSitter['lastName'],
-        $petSitter['phoneNb'],
-        $petSitter['birthDate'],
-        $petSitter['image'],
-        $petSitter['sitterStreet'],
-        $petSitter['sitterPostalCode'],
-        $petSitter['sitterCity'],
-        $petSitter['description'],
-        $petSitter['petSitterSince'],
-        $petSitter['residenceType_id'],
-        $petSitter['animalType_id'],
-        $petSitter['userid']
-    );
+       
         return $petSitter;
     }
 
@@ -134,8 +119,8 @@ class PetsittersRepository extends UsersRepository {
 
     public function getRowsByPost($startDate, $endDate, $city, $serviceId) {
     
-        $query = "SELECT 
-        ps.*, pss.*, s.*, rt.*, a.*, av.*
+    $query = "SELECT 
+        ps.*, pss.*, s.*, rt.*, psat.*, av.*
     FROM 
         petSitters ps
     LEFT JOIN 
@@ -145,24 +130,51 @@ class PetsittersRepository extends UsersRepository {
     LEFT JOIN 
         residenceTypes rt ON ps.residenceType_id = rt.idresidenceType
     LEFT JOIN 
-        animalTypes a ON ps.animalType_id = a.idanimalType
+    petSitters_animalTypes psat ON ps.idpetSitter = psat.petSitter_id
     LEFT JOIN 
         availabilities av ON ps.idpetSitter = av.petSitter_id
-           WHERE 
-            (ps.sitterCity = :city OR ps.sitterPostalCode = :city)
+    WHERE 
+            (ps.sitterCity = :city OR ps.sitterPostalCode = :postalCode)
             AND pss.service_id = :serviceId
             AND av.startDate <= :startDate AND av.endDate >= :endDate";
     $statement = $this->pdo->prepare($query);
     $statement->bindValue(':city', $city, \PDO::PARAM_STR);
+    $statement->bindValue(':postalCode', $city, \PDO::PARAM_STR);
     $statement->bindValue(':serviceId', $serviceId, \PDO::PARAM_STR);
     $statement->bindValue(':startDate', $startDate, \PDO::PARAM_STR);
     $statement->bindValue(':endDate', $endDate, \PDO::PARAM_STR);
-
     $statement->execute();
     $petsitters = $statement->fetchAll(\PDO::FETCH_ASSOC);
     return $petsitters;
    }
     
+
+
+   public function getAllRows() {
+    
+    $query = "SELECT 
+        ps.*, pss.*, s.*, rt.*, psat.*, av.*
+    FROM 
+        petSitters ps
+    LEFT JOIN 
+        petSitterServices pss ON ps.idpetSitter = pss.petSitter_id
+    LEFT JOIN 
+        services s ON pss.service_id = s.idservice
+    LEFT JOIN 
+        residenceTypes rt ON ps.residenceType_id = rt.idresidenceType
+    LEFT JOIN 
+    petSitters_animalTypes psat ON ps.idpetSitter = psat.petSitter_id
+    LEFT JOIN 
+        availabilities av ON ps.idpetSitter = av.petSitter_id
+    ORDER BY av.startDate";
+    $statement = $this->pdo->query($query);
+    $statement->execute();
+    $allpetsitters = $statement->fetchAll(\PDO::FETCH_ASSOC);
+    return $allpetsitters;
+   }
+
+
+
 
 
 
@@ -172,7 +184,7 @@ class PetsittersRepository extends UsersRepository {
     public function getRowsByCity($city) 
     {
         $query = "SELECT 
-                ps.*, pss.*, s.*, rt.*, a.*, av.*
+                ps.*, pss.*, s.*, rt.*, psat.*, av.*
             FROM 
                 petSitters ps
             LEFT JOIN 
@@ -182,7 +194,7 @@ class PetsittersRepository extends UsersRepository {
             LEFT JOIN 
                 residenceTypes rt ON ps.residenceType_id = rt.idresidenceType
             LEFT JOIN 
-                animalTypes a ON ps.animalType_id = a.idanimalType
+            petSitters_animalTypes psat ON ps.idpetSitter = psat.petSitter_id
             LEFT JOIN 
                 availabilities av ON ps.idpetSitter = av.petSitter_id
             WHERE 

@@ -1,11 +1,11 @@
 <?php
 session_start();
-include "../Templates/header.php";
-require_once "../Model/UsersRepository.php";
-require_once "../Model/UsersLoginRepository.php";
-require_once "../Model/Database.php";
-require_once "../Model/Masters.php";
-require_once "../Model/config.php";
+include "Templates/header-var.php";
+require_once "Model/UsersRepository.php";
+require_once "Model/UsersLoginRepository.php";
+require_once "Model/Database.php";
+require_once "Model/Masters.php";
+require_once "Model/config.php";
 if (!empty($_POST)) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -30,4 +30,4 @@ if (!empty($_POST)) {
     <input type="text" name="email" placeholder = "Votre email">
     <input type="password" name="password" placeholder = "Votre mot de passe">
     <input type="submit">
-<?php include "../Templates/footer.php";?>
+<?php include "Templates/footer.php";?>
