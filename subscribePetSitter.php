@@ -200,3 +200,4 @@ if (!empty($_POST['addpetsitter'])) {
     </div>
 
 </div>
+<?php require_once "footer.php"?>
