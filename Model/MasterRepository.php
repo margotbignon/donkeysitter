@@ -114,7 +114,7 @@ SQL;
         UPDATE
             masters 
         SET
-        lastName = :lastName, firstName = :firstName, phoneNb = :phoneNb, birthDate = :birthDate, masterStreet = :street, masterPostalCode = :postalCode, masterCity = :city
+            lastName = :lastName, firstName = :firstName, phoneNb = :phoneNb, birthDate = :birthDate, masterStreet = :street, masterPostalCode = :postalCode, masterCity = :city
         WHERE idmaster = :myId
     SQL;
         $statement = $this->pdo->prepare($query); 
@@ -128,6 +128,40 @@ SQL;
         $statement->bindValue(':myId', $id, \PDO::PARAM_STR);
         $statement->execute();
         }
+
+        public function updateRowWithImage(Masters $master, $id, $checkImage) {
+            try {
+                if ($checkImage !== UPLOAD_ERR_OK) {
+                    $errorMessages[] = "Erreur lors du téléchargement du fichier.";
+                }
+                $imageBlob = base64_encode(file_get_contents($master->getImage()));
+                if (!empty($errorMessages)) {
+                    throw new Exception (implode("<br><center>", $errorMessages));
+                }
+            $query=<<<SQL
+            UPDATE
+                masters 
+            SET
+            lastName = :lastName, firstName = :firstName, phoneNb = :phoneNb, birthDate = :birthDate, image = :image, masterStreet = :street, masterPostalCode = :postalCode, masterCity = :city
+            WHERE idmaster = :myId
+        SQL;
+            $statement = $this->pdo->prepare($query); 
+            $statement->bindValue(':firstName', $master->getFirstName(), \PDO::PARAM_STR);
+            $statement->bindValue(':lastName', $master->getLastName(), \PDO::PARAM_STR);
+            $statement->bindValue(':phoneNb', $master->getPhoneNb(), \PDO::PARAM_STR);
+            $statement->bindValue('birthDate', $master->getBirthDate(), \PDO::PARAM_STR);
+            $statement->bindParam(':image', $imageBlob, \PDO::PARAM_LOB);
+            $statement->bindValue(':street', $master->getStreet(), \PDO::PARAM_STR);
+            $statement->bindValue(':postalCode', $master->getPostalCode(), \PDO::PARAM_STR);
+            $statement->bindValue(':city', $master->getCity(), \PDO::PARAM_STR);
+            $statement->bindValue(':myId', $id, \PDO::PARAM_STR);
+            $statement->execute();
+        } catch (Exception $e) {
+            echo "<center>Erreur : " . $e->getMessage();
+        }
+            }
+
+
 
         
 
