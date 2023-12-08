@@ -66,7 +66,7 @@ if (!empty($_POST)) {
 
     <!-- Form -->
     <div class="col-md-6">
-      <form action="" method="post">
+      <form action="" method="post" enctype="multipart/form-data>
         <div class="bg-white shadow rounded-4 border-0 search-column py-4 px-5 mb-5">
           <div class="text-hero-bold text-center">
           Je veux faire garder mon animal
@@ -157,3 +157,4 @@ if (!empty($_POST)) {
     </div>
 
 </div>
+<?php require_once "footer.php"?>
