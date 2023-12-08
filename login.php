@@ -14,14 +14,15 @@ if (!empty($_POST)) {
     if ($getLogin && password_verify($password, $getLogin['password'])) {
 
         if (!empty($getLogin['idpetSitter'])) {
-            $SESSION['user']['id'] = $getLogin['idpetSitter'];
+            $_SESSION['user']['id'] = $getLogin['idpetSitter'];
         } else {
-            $SESSION['user']['id'] = $getLogin['idmaster'];
+            $_SESSION['user']['id'] = $getLogin['idmaster'];
         }
-            $SESSION['user']['role'] = $getLogin['role'];
+            $_SESSION['user']['role'] = $getLogin['role'];
     } else if (!empty($password && !empty($email))) {
         echo "<center>Les informations saisies n'ont pas permi de vous identifier. Veuillez vérifier vos informations</center>";
     }
+
     }
 
 ?>
