@@ -54,7 +54,7 @@ class PetsittersRepository extends UsersRepository {
                     throw new Exception (implode("<br><center>", $errorMessages));
                 }
                 $imageBlob = base64_encode(file_get_contents($petSitter->getImage()));
-            if (empty($petSitter->getAnimalType())) {
+            if (empty($petSitter->getAnimaltypeId())) {
                 $query=<<<SQL
                 INSERT INTO 
                     petSitters (lastName, firstName, phoneNb, birthDate, image, description, petSitterSince, residenceType_id, sitterStreet, sitterPostalCode, sitterCity, userid)
@@ -94,7 +94,7 @@ class PetsittersRepository extends UsersRepository {
                 $statement->bindValue(':description', $petSitter->getDescription(), \PDO::PARAM_STR);
                 $statement->bindValue(':petSitterSince', $petSitter->getPetterSince(), \PDO::PARAM_STR);
                 $statement->bindValue(':residenceTypeId', $petSitter->getResidenceType_id(), \PDO::PARAM_STR);
-                $statement->bindValue(':animalTypeId', $petSitter->getAnimalType(), \PDO::PARAM_STR);
+                $statement->bindValue(':animalTypeId', $petSitter->getAnimaltypeId(), \PDO::PARAM_STR);
                 $statement->bindValue(':userid', $petSitter->getUserid(), \PDO::PARAM_STR);
                 $statement->execute();
             }
