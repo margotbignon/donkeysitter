@@ -1,6 +1,5 @@
-
 <div class="container-lg">
-    <div class="row d-flex justify-content-start">
+    <div class="row d-flex justify-content-start mt-5 footer">
       <hr class="mb-4">
         <div class="col">
             <a href="index.php" alt="brand">
