@@ -65,6 +65,51 @@ SQL;
     
         }
 
+
+    public function getRowAfterNowStandBy($petSitterId) {
+        $query=<<<SQL
+        SELECT 
+            r.*, p.firstname as FirstNamePetSitter, p.idpetSitter, m.idmaster, m.firstname as FirstNameMaster, s.serviceType, p.image as petSitterImage, m.image as masterImage
+        FROM 
+            donkeysitter.reservations r
+        LEFT JOIN 
+            donkeySitter.petsitters p ON r.petSitter_id = p.idpetSitter
+        LEFT JOIN 
+            donkeySitter.masters m ON r.master_id = m.idmaster
+        LEFT JOIN 
+            donkeySitter.services s ON r.service_id = s. idservice
+        WHERE 
+            petSitter_id = :petSitterId AND startDate > NOW() AND status = 'En attente';
+SQL;
+        $statement = $this->pdo->prepare($query); 
+        $statement->bindValue(':petSitterId', $petSitterId, PDO::PARAM_INT);
+        $statement->execute();
+        $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $reservations;
+    }
+
+    public function getRowAfterNowConfirmed($petSitterId) {
+        $query=<<<SQL
+        SELECT 
+            r.*, p.firstname as FirstNamePetSitter, p.idpetSitter, m.idmaster, m.firstname as FirstNameMaster, s.serviceType, p.image as petSitterImage, m.image as masterImage
+        FROM 
+            donkeysitter.reservations r
+        LEFT JOIN 
+            donkeySitter.petsitters p ON r.petSitter_id = p.idpetSitter
+        LEFT JOIN 
+            donkeySitter.masters m ON r.master_id = m.idmaster
+        LEFT JOIN 
+            donkeySitter.services s ON r.service_id = s. idservice
+        WHERE 
+            petSitter_id = :petSitterId AND startDate > NOW() AND status = 'Validée';
+SQL;
+        $statement = $this->pdo->prepare($query); 
+        $statement->bindValue(':petSitterId', $petSitterId, PDO::PARAM_INT);
+        $statement->execute();
+        $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $reservations;
+    }
+
     public function deleteRow(int $id) : array
     {
         $query = "DELETE * FROM reservations WHERE idreservation = :id";
@@ -115,6 +160,20 @@ SQL;
         $statement->bindValue(':petSitter_id', $reservation->getPetSitterId(), PDO::PARAM_INT);
         
         return $statement->execute();
+    }
+
+    public function updateStatus($status, $idReservation) {
+    $query = <<<SQL
+    UPDATE 
+        reservations
+    SET
+        status = :status
+    WHERE idreservation = :id 
+SQL;
+    $statement = $this->pdo->prepare($query);
+    $statement->bindValue(':status', $status, PDO::PARAM_STR);
+    $statement->bindValue(':id', $idReservation); 
+    $statement->execute();
     }
 
 }
