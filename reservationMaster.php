@@ -18,6 +18,9 @@ $reservationsAfterNow = $reservationRepository->getRowAfterNow($idMaster, 'maste
     <!-- Réservation à venir -->
     <h5>A venir</h5>
     <!-- Card conteneur -->
+    <?php if (empty($reservationsAfterNow)) : ?>
+      <p> Aucune réservation à venir.</p>
+    <?php endif ?>
     <?php foreach ($reservationsAfterNow as $reservationAfterNow) : ?>
       <div class="col-md-4">
           <div class="card rounded-4 shadow border-0 px-4 py-4 mt-4">
@@ -32,8 +35,8 @@ $reservationsAfterNow = $reservationRepository->getRowAfterNow($idMaster, 'maste
           
               <div class="mb-3">
                   <p class="card-text fw-medium">Type de prestation : <?= $reservationAfterNow['serviceType']?></p>
-                  <p class="card-text fw-medium">Date de début : <?= $reservationAfterNow['startDate']?></p>
-                  <p class="card-text fw-medium">Date de fin : <?= $reservationAfterNow['endDate']?></p>
+                  <p class="card-text fw-medium">Date de début : <?= date('d-m-Y', strtotime($reservationAfterNow['startDate']))?></p>
+                  <p class="card-text fw-medium">Date de fin : <?= date('d-m-Y', strtotime($reservationAfterNow['endDate']))?></p>
                   <p class="card-text fw-bold">Prix total: <?= $reservationAfterNow['totalPrice']?>€</p>
               </div>
                   
@@ -61,6 +64,9 @@ $reservationsAfterNow = $reservationRepository->getRowAfterNow($idMaster, 'maste
     <!-- Réservation à venir -->
     <h5>Passées</h5>
     <!-- Card conteneur -->
+    <?php if (empty($reservationsBeforeNow)) : ?>
+      <p> Aucune réservation passée.</p>
+    <?php endif ?>
     <?php foreach ($reservationsBeforeNow as $reservationBeforeNow) : ?>
       <div class="col-md-4">
           <div class="card rounded-4 shadow border-0 px-4 py-4 mt-4">
