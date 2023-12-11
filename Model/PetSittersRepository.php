@@ -288,6 +288,28 @@ SQL;
     }
     }
 
+    public function getPriceService($idpetSitter, $idService) {
+        $query=<<<SQL
+        SELECT 
+            ps.*, p.firstName, p.image, s.serviceType
+        FROM 
+            donkeySitter.petSitterServices ps
+        LEFT JOIN 
+            donkeySitter.petSitters p ON petSitter_id = idpetSitter
+        LEFT JOIN
+            donkeySitter.services s ON ps.service_id = s.idservice
+        WHERE 
+            ps.petSitter_id = :idpetSitter AND service_id = :idService;
+SQL;
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':idpetSitter', $idpetSitter);
+        $statement->bindValue(':idService', $idService);
+        $statement->execute();
+        $priceService = $statement->fetch(PDO::FETCH_ASSOC);
+        return $priceService;
+
+    }
+
 }
 
 

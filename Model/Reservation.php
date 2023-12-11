@@ -3,8 +3,8 @@
 class Reservation {
 
     private int $id;
-    private DateTime $startDate;
-    private DateTime $endDate;
+    private string $startDate;
+    private string $endDate;
     private float $totalPrice;
     private string $status;
     private string $description;
@@ -12,7 +12,7 @@ class Reservation {
     private int $masterId;
     private int $petSitterId;
 
-    public function __construct(DateTime $startDate,DateTime $endDate,  float $totalPrice, string $status, string $description, int $serviceId , int $masterId, int $petSitterId )
+    public function __construct(string $startDate, string $endDate,  float $totalPrice, string $status, string $description, int $serviceId , int $masterId, int $petSitterId )
     
     {
         $this-> startDate = $startDate;
