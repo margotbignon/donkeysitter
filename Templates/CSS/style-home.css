@@ -51,7 +51,7 @@ h1,h2,h3,h4,h5,h6 {
 /* button primary */
 
 .btn {
-    padding: 15px 100px;
+    padding: 15px 15px;
     font-weight: 600;
     border-radius: 8px;
     font-size: var(--text-medium);
@@ -105,7 +105,7 @@ h1,h2,h3,h4,h5,h6 {
     
 .form-home {
     max-width:440px;
-    margin-bottom:100px;
+    margin-bottom:40px;
 }
 .form-select-home {
     max-width:440px;
@@ -120,7 +120,7 @@ margin:8px 0px 8px 0px;
 }
 
 input.form-date {
-    width:200px;
+    width:100%;
     padding:15px;
 }
 
@@ -132,12 +132,19 @@ input.form-date {
     display: flex;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
 .space-between {
     justify-content: space-between;
 }
 
 .radio-container {
-    margin-right: 20px;
     width:100%;
 }
 
@@ -151,16 +158,22 @@ input.form-date {
     border: none;
     font-weight: 600;
     color: #1B1B1B;
-    min-width: 200px;
-    max-width: 300px;
-    height: auto;
-    padding: 15px 15px;
-    margin-right: 20px;
+    width:95%;
+    min-height: 90px;
+    max-height: 90px;
+    line-height: auto;
+    padding: 15px;
     align-items: center;
     cursor: pointer;
-    font-size: var(--text-medium);
-    font-weight: var(--font-weight-semibold);
+    font-size: 1.1em;
+
 }
+
+div [data-toggle="buttons"] {
+    width:100%;
+    justify-content: space-between;
+}
+
 
 .radio-label:hover {
     background-color: #1B1B1B;
@@ -171,6 +184,14 @@ input.form-date {
     background-color: #1B1B1B;
     color: #FFFFFF;
 }
+
+
+
+.date-container {
+justify-content: space-between;
+align-content: stretch;
+}
+
 
 /* ------------- */
 

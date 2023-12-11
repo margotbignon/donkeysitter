@@ -97,17 +97,18 @@ if (!empty($_POST['addpetsitter'])) {
                 <div class="text-hero-regular text-center text-md-start">Prestation :</div>
           </div>
               
-              <div class="d-flex align-items-center mb-3 fw-bold pb-3">
+          <div class="display-none flex space-between" data-toggle="buttons">
                   <?php foreach ($services as $service) : ?>
-                  <div class="p-2 flex-fill">
-                    <input type="checkbox" autocomplete="off" class="radio" value="<?= $service->getId()?>" name="servicesTypeCheck[]" <?php if (!empty($_POST['servicesTypeCheck'])) { $servicesCheckCompare->checkBoxServices($service); }?>>
-                    <label class="btn-checkbox me-4 border">
+                    <div class="flex space-between check-container align-center">
+                    <input id = "<?= $service->getId()?>" type="checkbox" class ="check" autocomplete="off" value="<?= $service->getId()?>" name="servicesTypeCheck[]" <?php if (!empty($_POST['servicesTypeCheck'])) { $servicesCheckCompare->checkBoxServices($service); }?>>
+                    <label for ="<?= $service->getId()?>" class="check-label border flex align-center text-center justify-center">
                       <?= $service->getServiceType()?>
                     </label>
                   </div>
-              <?php endforeach ?>
+                  <?php endforeach ?>
+          </div>
 
-            </div>
+
             <div class="cta d-grid gap-2 pt-3">
               <input type="submit" class="btn btn-primary" value="Je valide">
             </div>
@@ -126,10 +127,12 @@ if (!empty($_POST['addpetsitter'])) {
               <div>
                 <input type="text" name="adresse" class="form-control mt-3 mb-3 pt3 pb3" placeholder="Adresse" aria-label=".form-control-lg example" required> 
               </div>
+
               <div class="d-flex justify-content-space-between">
                 <input type="text" name="city" class="form-control me-2 pt3 pb3" placeholder="Ville" aria-label=".form-control-lg example" required>
                 <input type="text" name="postalCode" class="form-control ms-2 pt3 pb3" placeholder="Code postal" aria-label=".form-control-lg example" required>
               </div>
+              
               <div>
                 <input type="phone" name="phoneNb" class="form-control mt-3 pt3 pb3" placeholder="N° de téléphone" aria-label=".form-control-lg example" required> 
               </div>

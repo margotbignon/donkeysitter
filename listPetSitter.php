@@ -111,9 +111,9 @@ $avail = "dès aujourd'hui !";
                     <div class="mb-3">
                         <div class="col-md-8 display-none flex wrap" data-toggle="buttons">
                             <?php foreach ($services as $service): ?>
-                                <div class="radio-container">
+                                <div class="radio-container flex align-center">
                                     <input type="radio" autocomplete="off" name="service" value="<?= $service->getId() ?>" id="service-<?= $service->getId() ?>" class="radio " required />
-                                    <label class="mb-3 radio-label radio-label-list border text-center" for="service-<?= $service->getId() ?>">
+                                    <label class="mb-3  border radio-label border flex align-center text-center justify-center " for="service-<?= $service->getId() ?>">
                                         <?= $service->getServiceType() ?>
                                     </label>
                                 </div>
@@ -124,10 +124,10 @@ $avail = "dès aujourd'hui !";
                         <label for="dates" class="text-label-regular mb-3">Dates :</label>
                         <div class="d-flex flex-wrap mb-3">
                             <div class="p-2">
-                                <input class="shadow-sm pt3 pb3 mb-4 px-3 me-3 border rounded" type="date" id="startDate" name="startDate" value="Date de début"/>
+                                <input class="flex-wrap shadow-sm pt3 pb3 mb-4 px-3 me-3 border rounded" type="date" id="startDate" name="startDate" value="Date de début"/>
                             </div>
                             <div class="p-2 fw-bold text-end">
-                                <input class="shadow-sm pt3 pb3 mb-4 px-3 border rounded" type="date" id="end" name="endDate" value="Date de fin"/>
+                                <input class="shadow-sm pt3 pb3 mb-4 px-3 border rounded form-date" type="date" id="end" name="endDate" value="Date de fin"/>
                             </div>
                         </div>
                         <div>
