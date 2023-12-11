@@ -68,7 +68,7 @@ h1,h2,h3,h4,h5,h6 {
 /* button primary */
 
 .btn {
-    padding: 15px 15px;
+    padding: 15px 100px;
     font-weight: 600;
     border-radius: 8px;
     font-size: var(--text-regular);
@@ -297,6 +297,7 @@ input.form-date {
     width:100%;
 }
 
+
 .justify-center {
     justify-content: center;
 }
@@ -308,6 +309,7 @@ input.form-date {
 .space-between {
     justify-content: space-between;
 }
+
 
 .radio-container, .check-container {
     width:100%;
@@ -356,12 +358,17 @@ div [data-toggle="buttons"] {
 }
 
 
-
 .date-container {
 justify-content: space-between;
 align-content: stretch;
 }
 
 
-
 /* ------------- */
+/* Footer */
+
+.footer {
+    position: fixed;
+    left: 0;
+	bottom: 0;
+}
